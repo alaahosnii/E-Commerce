@@ -1,0 +1,7 @@
+import 'package:ecommerce/domain/model/products_response_dto.dart';
+
+import '../model/categories_result_dto.dart';
+
+abstract class ProductsRepository {
+  Future<ProductsResponseDto> getProducts();
+}

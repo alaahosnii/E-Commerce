@@ -5,12 +5,18 @@
 /// phone : "01010700700"
 
 class RegistrationRequest {
+  String? name;
+  String? email;
+  String? password;
+  String? rePassword;
+  String? phone;
   RegistrationRequest({
-      this.name, 
-      this.email, 
-      this.password, 
-      this.rePassword, 
-      this.phone,});
+    this.name,
+    this.email,
+    this.password,
+    this.rePassword,
+    this.phone,
+  });
 
   RegistrationRequest.fromJson(dynamic json) {
     name = json['name'];
@@ -19,11 +25,6 @@ class RegistrationRequest {
     rePassword = json['rePassword'];
     phone = json['phone'];
   }
-  String? name;
-  String? email;
-  String? password;
-  String? rePassword;
-  String? phone;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -34,5 +35,4 @@ class RegistrationRequest {
     map['phone'] = phone;
     return map;
   }
-
 }

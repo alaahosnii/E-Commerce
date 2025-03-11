@@ -55,7 +55,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           DialogUtils.getDialog('Fail', state.failMessage, context);
         } else if (state is SuccessState) {
           //navigate to login
-          Navigator.pushNamed(context, LoginScreen.routeName);
+          Navigator.pushReplacementNamed(context, LoginScreen.routeName);
         } else if (state is LoadingState) {
           // show error message
           DialogUtils.getDialog(
@@ -72,7 +72,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 children: [
                   SizedBox(height: 55),
-                  Image.asset('images/route_logo.png'),
+                  Image.asset('assets/images/route_logo.png'),
                   Form(
                     key: formKey,
                     child: Column(

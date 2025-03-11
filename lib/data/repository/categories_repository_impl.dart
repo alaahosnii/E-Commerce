@@ -11,4 +11,9 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
   Future<CategoriesResultDto> getCategories() {
     return categoriesDataSource.getCategories();
   }
+
+  @override
+  Future<CategoriesResultDto> getSubCategories({required String id}) {
+    return categoriesDataSource.getSubCategories(id: id);
+  }
 }

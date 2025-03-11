@@ -1,5 +1,6 @@
 import 'package:ecommerce/data/api/api_manager.dart';
 import 'package:ecommerce/data/api/login_response/login_response.dart';
+import 'package:ecommerce/domain/customException/custom_exception.dart';
 import 'package:ecommerce/domain/model/auth_response_dto.dart';
 import 'package:ecommerce/domain/usecases/login_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,14 +26,12 @@ class LoginViewModel extends Cubit<LoginViewState> {
   }
   void login(String email, String password) async {
     emit(LoginLoadingState(loadingMessage: 'Loading...'));
-    print('email $email');
-    var response = await loginUseCase.invoke(email, password);
-    print('fail ${response.message}');
-    if (response.statusMsg == 'fail' || response.message == 'fail') {
-      emit(LoginFailState(failMessage: 'Fail', failContent: response.message));
-      return;
+    try {
+      var response = await loginUseCase.invoke(email, password);
+      emit(LoginSuccessState(response));
+    } on ServerError catch (e) {
+      emit(LoginFailState(failMessage: 'Fail', failContent: e.errorMessage));
     }
-    emit(LoginSuccessState(response));
   }
 }
 

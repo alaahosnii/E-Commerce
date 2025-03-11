@@ -1,14 +1,14 @@
 import 'package:ecommerce/domain/model/products_sub_dto.dart';
 
-class productsDataDto {
-  // int? sold;
-  // List<String>? images;
+class ProductsDataDto {
+  int? sold;
+  List<dynamic>? images;
   // List<ProductsSubDto>? subcategory;
-  // int? ratingsQuantity;
-  // String? id;
+  int? ratingsQuantity;
+  String? id;
   String? title;
   // String? slug;
-  // String? description;
+  String? description;
   // int? quantity;
   int? price;
   String? imageCover;
@@ -17,18 +17,18 @@ class productsDataDto {
   double? ratingsAverage;
   // DateTime? createdAt;
   // DateTime? updatedAt;
-  // int? priceAfterDiscount;
+  int? priceAfterDiscount;
   // List<dynamic>? availableColors;
 
-  productsDataDto({
-    // this.sold,
-    // this.images,
+  ProductsDataDto({
+    this.sold,
+    this.images,
     // this.subcategory,
-    // this.ratingsQuantity,
-    // this.id,
+    this.ratingsQuantity,
+    this.id,
     this.title,
     // this.slug,
-    // this.description,
+    this.description,
     // this.quantity,
     this.price,
     this.imageCover,
@@ -37,7 +37,7 @@ class productsDataDto {
     this.ratingsAverage,
     // this.createdAt,
     // this.updatedAt,
-    // this.priceAfterDiscount,
+    this.priceAfterDiscount,
     // this.availableColors,
   });
 }

@@ -1,19 +1,24 @@
 import 'package:ecommerce/data/api/api_manager.dart';
 import 'package:ecommerce/data/api/register_response/register_response.dart';
 import 'package:ecommerce/data/api/login_response/login_response.dart';
+import 'package:ecommerce/domain/customException/custom_exception.dart';
 import 'package:ecommerce/domain/datasource/auth_datasource.dart';
 import 'package:ecommerce/domain/model/auth_response_dto.dart';
 
 class AuthDatasourceImpl implements AuthDataSource {
-  ApiManager apiManager = ApiManager();
+  ApiManager apiManager;
 
   AuthDatasourceImpl(this.apiManager);
 
   @override
   Future<AuthResponseDto> login(String email, String password) async {
-    var response = await apiManager.login(email, password);
+    try {
+      var response = await apiManager.login(email, password);
 
-    return response.toAuthResponseDto();
+      return response.toAuthResponseDto();
+    } on ServerError catch (e) {
+      throw ServerError(e.errorMessage);
+    }
   }
 
   @override

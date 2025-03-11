@@ -7,14 +7,14 @@ import 'category.dart';
 import 'subcategory.dart';
 
 class Datum {
-  // int? sold;
-  // List<String>? images;
+  int? sold;
+  List<dynamic>? images;
   // List<Subcategory>? subcategory;
-  // int? ratingsQuantity;
-  // String? id;
+  int? ratingsQuantity;
+  String? id;
   String? title;
   // String? slug;
-  // String? description;
+  String? description;
   // int? quantity;
   int? price;
   String? imageCover;
@@ -23,18 +23,18 @@ class Datum {
   double? ratingsAverage;
   // DateTime? createdAt;
   // DateTime? updatedAt;
-  // int? priceAfterDiscount;
+  int? priceAfterDiscount;
   // List<dynamic>? availableColors;
 
   Datum({
-    // this.sold,
-    // this.images,
+    this.sold,
+    this.images,
     // this.subcategory,
-    // this.ratingsQuantity,
-    // this.id,
+    this.ratingsQuantity,
+    this.id,
     this.title,
     // this.slug,
-    // this.description,
+    this.description,
     // this.quantity,
     this.price,
     this.imageCover,
@@ -43,18 +43,20 @@ class Datum {
     this.ratingsAverage,
     // this.createdAt,
     // this.updatedAt,
-    // this.priceAfterDiscount,
+    this.priceAfterDiscount,
     // this.availableColors,
   });
 
   factory Datum.fromMap(Map<String, dynamic> data) => Datum(
-        // sold: data['sold'] as int?,
-        // images: data['images'] as List<String>?,
-        // ratingsQuantity: data['ratingsQuantity'] as int?,
-        // id: data['_id'] as String?,
+        sold: data['sold'] as int?,
+        images: (data['images'] as List<dynamic>?)
+            ?.map((image) => image.toString())
+            .toList(),
+        ratingsQuantity: data['ratingsQuantity'] as int?,
+        id: data['_id'] as String?,
         title: data['title'] as String?,
         // slug: data['slug'] as String?,
-        // description: data['description'] as String?,
+        description: data['description'] as String?,
         // quantity: data['quantity'] as int?,
         price: data['price'] as int?,
         imageCover: data['imageCover'] as String?,
@@ -71,18 +73,18 @@ class Datum {
         // updatedAt: data['updatedAt'] == null
         //     ? null
         //     : DateTime.parse(data['updatedAt'] as String),
-        // priceAfterDiscount: data['priceAfterDiscount'] as int?,
+        priceAfterDiscount: data['priceAfterDiscount'] as int?,
         // availableColors: data['availableColors'] as List<dynamic>?,
       );
 
   Map<String, dynamic> toMap() => {
-        // 'sold': sold,
-        // 'images': images,
-        // 'ratingsQuantity': ratingsQuantity,
-        // '_id': id,
+        'sold': sold,
+        'images': images,
+        'ratingsQuantity': ratingsQuantity,
+        '_id': id,
         'title': title,
         // 'slug': slug,
-        // 'description': description,
+        'description': description,
         // 'quantity': quantity,
         'price': price,
         'imageCover': imageCover,
@@ -92,7 +94,7 @@ class Datum {
         // 'createdAt': createdAt?.toIso8601String(),
         // 'updatedAt': updatedAt?.toIso8601String(),
         // 'id': id,
-        // 'priceAfterDiscount': priceAfterDiscount,
+        'priceAfterDiscount': priceAfterDiscount,
         // 'availableColors': availableColors,
       };
 
@@ -103,12 +105,19 @@ class Datum {
     return Datum.fromMap(json.decode(data) as Map<String, dynamic>);
   }
 
-  productsDataDto toProductsDataDto() {
-    return productsDataDto(
-        title: title,
-        imageCover: imageCover,
-        price: price,
-        ratingsAverage: ratingsAverage);
+  ProductsDataDto toProductsDataDto() {
+    return ProductsDataDto(
+      id: id,
+      title: title,
+      imageCover: imageCover,
+      price: price,
+      ratingsAverage: ratingsAverage,
+      priceAfterDiscount: priceAfterDiscount,
+      ratingsQuantity: ratingsQuantity,
+      sold: sold,
+      description: description,
+      images: images,
+    );
   }
 
   /// `dart:convert`

@@ -12,7 +12,7 @@ class CategoryIcon extends StatelessWidget {
       borderRadius: BorderRadius.circular(50),
       child: Image.network(
         imageUrl,
-        fit: BoxFit.fill,
+        fit: BoxFit.cover,
       ),
     );
   }

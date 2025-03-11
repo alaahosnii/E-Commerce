@@ -7,12 +7,14 @@ class Datum {
   String? name;
   String? slug;
   String? image;
+  String? category;
 
   Datum({
     this.id,
     this.name,
     this.slug,
     this.image,
+    this.category,
   });
 
   factory Datum.fromMap(Map<String, dynamic> data) => Datum(
@@ -20,6 +22,7 @@ class Datum {
         name: data['name'] as String?,
         slug: data['slug'] as String?,
         image: data['image'] as String?,
+        category: data['category'] as String?,
       );
 
   Map<String, dynamic> toMap() => {
@@ -27,6 +30,7 @@ class Datum {
         'name': name,
         'slug': slug,
         'image': image,
+        'category': category,
       };
 
   /// `dart:convert`
@@ -42,6 +46,7 @@ class Datum {
   String toJson() => json.encode(toMap());
 
   CategoriesDataDto toCategoriesDataDto() {
-    return CategoriesDataDto(id: id, name: name, slug: slug, image: image);
+    return CategoriesDataDto(
+        id: id, name: name, slug: slug, image: image, category: category);
   }
 }

@@ -45,6 +45,12 @@ class HomeTabViewModel extends Cubit<HomeTabViewState> {
 
     emit(HomeTabProductsSuccess(response.data!));
   }
+
+  void getUserFavorites() async {
+    var response = await apiManager.getFavorite();
+
+    emit(GetUserFavoritesSuccessState(products: response.data));
+  }
 }
 
 abstract class HomeTabViewState {}
@@ -64,7 +70,7 @@ class HomeTabSuccessState extends HomeTabViewState {
 }
 
 class HomeTabProductsSuccess extends HomeTabViewState {
-  List<productsDataDto> products;
+  List<ProductsDataDto> products;
 
   HomeTabProductsSuccess(this.products);
 }
@@ -74,4 +80,10 @@ class LoginFailState extends HomeTabViewState {
   String? failContent;
 
   LoginFailState({this.failMessage, this.failContent});
+}
+
+class GetUserFavoritesSuccessState extends HomeTabViewState {
+  List<ProductsDataDto>? products;
+
+  GetUserFavoritesSuccessState({this.products});
 }

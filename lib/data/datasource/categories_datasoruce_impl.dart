@@ -18,4 +18,17 @@ class CategoriesDataSourceImpl implements CategoriesDataSource {
           response.data?.map((enity) => enity.toCategoriesDataDto()).toList(),
     );
   }
+
+  @override
+  Future<CategoriesResultDto> getSubCategories({required String id}) async {
+    var response = await apiManager.getSubCategories(id);
+
+    return CategoriesResultDto(
+      results: response.results,
+      metadata: response.metadata?.toCategoriesMetaDataDto(),
+      categoriesList: response.data
+          ?.map((category) => category.toCategoriesDataDto())
+          .toList(),
+    );
+  }
 }

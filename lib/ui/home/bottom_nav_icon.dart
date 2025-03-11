@@ -15,12 +15,12 @@ class BottomNavIcon extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(20)),
             child: ImageIcon(
-              AssetImage('images/$imageName.png'),
+              AssetImage('assets/images/$imageName.png'),
               color: Theme.of(context).primaryColor,
             ),
           )
         : ImageIcon(
-            AssetImage('images/$imageName.png'),
+            AssetImage('assets/images/$imageName.png'),
             color: Colors.white,
           );
   }

@@ -16,7 +16,7 @@ class ProductsResponse {
 
   factory ProductsResponse.fromMap(Map<String, dynamic> data) {
     return ProductsResponse(
-      results: data['results'] as int?,
+      results: data['results'] == null ? null : data['results'] as int?,
       metadata: data['metadata'] == null
           ? null
           : Metadata.fromMap(data['metadata'] as Map<String, dynamic>),
